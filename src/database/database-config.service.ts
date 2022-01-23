@@ -18,7 +18,6 @@ export class DatabaseConfigService implements MongooseOptionsFactory {
   createMongooseOptions(): MongooseModuleOptions {
     const dbConfig: IDatabaseConfig = this.configService.get(DATABASE_CONFIG);
     const { nodeEnv }: IEnvConfig = this.configService.get(ENV_CONFIG);
-    console.log('nodeEnvvvvv', nodeEnv);
 
     const uri =
       nodeEnv === EnvConfigEnum.TEST
