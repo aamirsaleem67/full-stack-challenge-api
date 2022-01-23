@@ -1,12 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { PongDto } from './dtos/pong.dto';
 
-@Controller()
+@ApiTags('App')
+@Controller('app')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @ApiOkResponse({
+    description: 'Ping the application health status',
+    type: PongDto,
+  })
+  @Get('ping')
+  ping(): PongDto {
+    return { text: 'pong' };
   }
 }

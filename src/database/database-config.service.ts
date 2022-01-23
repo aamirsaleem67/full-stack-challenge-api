@@ -4,12 +4,12 @@ import {
   MongooseModuleOptions,
   MongooseOptionsFactory,
 } from '@nestjs/mongoose';
-import { DATABASE_CONFIG, IDatabaseConfig } from 'src/config/database.config';
+import { DATABASE_CONFIG, IDatabaseConfig } from '../config/database.config';
 import {
   EnvConfigEnum,
   ENV_CONFIG,
   IEnvConfig,
-} from 'src/config/environment.config';
+} from '../config/environment.config';
 
 @Injectable()
 export class DatabaseConfigService implements MongooseOptionsFactory {
@@ -18,6 +18,7 @@ export class DatabaseConfigService implements MongooseOptionsFactory {
   createMongooseOptions(): MongooseModuleOptions {
     const dbConfig: IDatabaseConfig = this.configService.get(DATABASE_CONFIG);
     const { nodeEnv }: IEnvConfig = this.configService.get(ENV_CONFIG);
+    console.log('nodeEnvvvvv', nodeEnv);
 
     const uri =
       nodeEnv === EnvConfigEnum.TEST
